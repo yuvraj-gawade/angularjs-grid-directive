@@ -1,0 +1,19 @@
+<div>
+	<pre>Sorting predicate = {{predicate}}; reverse = {{reverse}}</pre>
+	<table>
+		<tr>
+			<th ng-repeat="record in data.gridHeader" ng-click="sortRecords(record.sortable, record.column, !reverse); ">{{record.displayName}}</th>
+			<th>Actions</th>
+		</tr>
+		<tr ng-repeat="record in data.gridData | orderBy:predicate:reverse">
+			<td ng-repeat="key in notSorted(record)" ng-init="value=record[key]">{{value}}</td>	
+			<td>
+				<span ng-repeat="action in actionList">
+					<a href="#." ng-click="call({fun: action.click, row: record})"  title="{{action.title}}">
+						{{action.label}}
+					</a>
+				</span>
+			</td>
+		</tr>
+	</table>	
+</div>
